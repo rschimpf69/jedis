@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export default function Timer() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
-      setCount(c => c + 1)
-    }, 1000)
-  }, [])
+    const interval = setInterval(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-  return (
-    <div>
-      Seconds passed: {count}
-    </div>
-  )
+  return <div>Seconds passed: {count}</div>;
 }
